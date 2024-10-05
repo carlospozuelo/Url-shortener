@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -21,6 +23,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public List<ApplicationUser> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     public ApplicationUser createUser(UserDTO userDTO) {
         if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
             throw new URLShortenerException("A user with that ID already exists", HttpStatus.CONFLICT);
@@ -29,7 +35,6 @@ public class UserService {
         ApplicationUser user = new ApplicationUser(userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
 
         userRepository.save(user);
-
         return user;
     }
 }
