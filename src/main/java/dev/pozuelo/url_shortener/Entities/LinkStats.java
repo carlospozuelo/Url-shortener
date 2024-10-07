@@ -5,5 +5,9 @@ import lombok.Data;
 @Data
 public class LinkStats {
 
-    private int visits;
+    private long visits;
+
+    public void addVisit() {
+        visits++;
+    }
 }

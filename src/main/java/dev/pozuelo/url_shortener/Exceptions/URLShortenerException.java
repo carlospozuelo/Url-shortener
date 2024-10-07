@@ -21,4 +21,8 @@ public class URLShortenerException extends RuntimeException {
         super(message);
         statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     }
+
+    public static URLShortenerException linkNotFound(String alias) {
+        return new URLShortenerException("A link with id '" + alias + "' could not found.", HttpStatus.NOT_FOUND);
+    }
 }

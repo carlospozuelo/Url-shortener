@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.*;
@@ -24,8 +23,6 @@ public class ApplicationUser {
 
     private List<String> roles;
 
-    private Set<String> links;
-
     public ApplicationUser(String username, String encodedPassword) {
         this();
         this.username = username;
@@ -34,7 +31,6 @@ public class ApplicationUser {
 
     public ApplicationUser() {
         roles = new ArrayList<>();
-        links = new HashSet<>();
         roles.add(USER_ROLE);
     }
 }
