@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static dev.pozuelo.url_shortener.Config.SecurityConfig.USER_ROLE;
-
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 
