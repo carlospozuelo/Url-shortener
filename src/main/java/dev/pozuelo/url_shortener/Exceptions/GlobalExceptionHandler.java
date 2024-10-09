@@ -49,6 +49,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorDetails);
     }
 
+
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(NoResourceFoundException ex, WebRequest request) {
         ErrorResponse errorDetails = new ErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
