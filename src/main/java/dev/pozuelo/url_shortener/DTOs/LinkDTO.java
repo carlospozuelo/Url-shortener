@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class LinkDTO {
     @NotNull(message = "linkAlias can't be null")
-    @Pattern(regexp = "^(?!.*/).*\n",
-            message = "linkAlias can't contain '/'")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+$",
+            message = "linkAlias can only contain alphanumeric characters, '-' and '_'")
     private String linkAlias;
 
     @NotNull(message = "link can't be null")

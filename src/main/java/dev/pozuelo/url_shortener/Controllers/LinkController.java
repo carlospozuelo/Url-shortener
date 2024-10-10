@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static dev.pozuelo.url_shortener.Config.SecurityConfig.HAS_USER_ROLE;
 
 @RestController
@@ -39,6 +41,18 @@ public class LinkController {
     public ResponseEntity<Link> createLink(@Valid @NotNull @RequestBody LinkDTO linkDTO) {
         Link link = linkService.createLink(linkDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(link);
+    }
+    /**
+     * Get /links : Gets all links
+     * Gets all the links from the current user
+     *
+     * @return OK (status code 200)
+     */
+    @GetMapping("/")
+    @PreAuthorize(HAS_USER_ROLE)
+    public ResponseEntity<List<Link>> getLinks() {
+        List<Link> links = linkService.getUserLinks();
+        return ResponseEntity.ok(links);
     }
 
     /**
